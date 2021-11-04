@@ -1,0 +1,137 @@
+---
+layout: default
+title: FAQ
+---
+
+<h1> Frequently asked Questions and answers</h1>
+
+
+<h2 id="risks">⚠️ Risks</h2>
+
+<h3 id="dangerous">Is playing with electricity dangerous?</h3>
+
+<p> Yes, it is. Please see <a href="/warning.html">Warning</a>.
+
+
+<h3 id="shouldi">Should I play with electricity?</h3>
+
+<p> No, you should not. Please see <a href="/warning.html">Warning</a>.
+
+
+
+<h2 id="about">🔧 About the project</h2>
+
+<h3 id="documentation">Where can I find documentation and source code?</h3>
+
+<ul>
+<li> Documentation: <a href="https://remoshock.github.io">https://remoshock.github.io</a>
+<li> Source Code: <a href="https://github.com/remoshock/remoshock">https://github.com/remoshock/remoshock</a>
+</ul>
+
+<h3 id="reportbugs">How do I report bugs, feature requests and patches?</h3>
+
+<p> Please use the GitHub issue tracker at
+<a href="https://github.com/remoshock/remoshock">https://github.com/remoshock/remoshock</a>.
+
+
+<h2 id="requirements"> ✔️ Requirements</h2>
+
+<h3 id="windows">Will remoshock work on Microsoft Windows?</h3>
+
+<p> remoshock works on Linux only. Ubuntu 2020.04 is used for testing.
+
+
+<h3 id="receivers">Which receivers are supported?</h3>
+
+<ul>
+<li> PAC collars (compatible with ATX and DTX remote, tested with ACX)
+<li> Nameless915m
+<li> Wodondog "Dog Shock Collar"
+<li> Petrainer
+</ul>
+
+Please see <a href="/receiver.html">Receivers</a> for details and photos.
+
+<h3 id="sdr">What transmitter hardware do I need?</h3>
+
+<p> You need a SDR (software defined radio) device, that
+<ul>
+<li> is able to transmit (most SDRs are receivers only)
+<li> is able to operate on the required frequency (27.195 MHz for PAC)
+<li> is supported by the software Universal Radio Hacker
+</ul>
+
+<p> According to Wikipedia both HackRF and LimeSDR fulfill those requirements.
+HackRF is used for testing
+
+
+
+<h2 id="troubleshooting">🔍 Troubleshooting</h2>
+
+<h3 id="hardwareerrors">I am getting strange hardware error messages from my SDR transmitter</h3>
+
+<p> Examples for error message:
+
+<pre>
+[CRITICAL::urh_cli.py::on_fatal_device_error_occurred] failed to start tx mode
+[ERROR::Device.py::log_retcode] HackRF-SETUP
+[ERROR::Device.py::log_retcode] HackRF-SETUP: HACKRF_ERROR_NOT_FOUND (-5)
+[ERROR::Device.py::log_retcode] HackRF-SET_SAMPLE_RATE to 2M: HACKRF_ERROR_LIBUSB (-1000)
+</pre>
+
+<p> Please avoid USB hubs and USB extension cables, but connect your SDR
+directly to your computer. At least USB 2 hubs are known to be too
+slow to sustain the bit-stream.
+
+<p> Please make sure that your computer is connected to the power network
+(i. e. don't run your notebook on battery only). A throttled CPU
+might be too slow to generate the bit-stream for the SDR.
+
+<p> If you run Linux inside of a Virtual Machine on a slow computer, you
+might experience the same performance problems. VirtualBox only supports
+USB 1.x in the default installation. <p> Please see <a href="https://www.eltima.com/article/virtualbox-usb-passthrough">https://www.eltima.com/article/virtualbox-usb-passthrough/</a> on how to install and enable USB Passthrough support for VirtualBox.
+
+
+<h3 id="udev">Access to HackRF only works as root</h3>
+
+<p> Access to the HackRF hardware only works as root. remoshock crashes with
+either a segmentation fault or the following error message:
+
+<pre>
+[ERROR::Device.py::log_retcode] HackRF-SETUP: HACKRF_ERROR_NOT_FOUND (-5)
+</pre>
+
+<p> The `hackrf_info` fails with the following error as a normal user:
+
+<pre>
+hackrf_open() failed: Access denied (insufficient permissions) (-1000)
+</pre>
+
+<p> In order to access the hardware as normal user, a udev rule is needed.
+Please create the file /etc/udev/rules.d/53-hackrf.rules with the
+content from <a href="https://raw.githubusercontent.com/mossmann/hackrf/master/host/libhackrf/53-hackrf.rules">https://raw.githubusercontent.com/mossmann/hackrf/master/host/libhackrf/53-hackrf.rules</a>
+
+<p> Furthermore please make sure that the user in the group plugdev.
+
+
+<h3 id="verbose">It is not working, why?</h3>
+
+<p> Please add the parameter `--verbose`. It will enable debug logging.
+
+
+<h3 id="virtualbox">I am in a VirtualBox VM and lsusb does not find my SDR transmitter</h3>
+
+<p> Please see <a href="https://www.eltima.com/article/virtualbox-usb-passthrough">https://www.eltima.com/article/virtualbox-usb-passthrough/</a> on how to install and enable USB Passthrough support for VirtualBox.
+
+<p> In short:
+<ul>
+<li> <code>apt install virtualbox-ext-pack</code>
+<li> add yourself to the vboxuser group
+<li> on the USB settings pages of the virutal machine select USB 3.0 controller
+  and add a filter to allow access to the SDR device
+</ul>
+
+<h3 id="tested">Which setup is used for testing?</h3>
+
+<p> I use Ubuntu 2020.04 with a HackRF transmitter, a PAC ACX collar and
+a brandless Wodondog collar.
