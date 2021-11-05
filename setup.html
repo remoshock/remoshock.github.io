@@ -1,0 +1,114 @@
+---
+title: Setup
+layout: default
+---
+
+<h1>Setup</h1>
+
+# <img src="https://raw.githubusercontent.com/remoshock/remoshock/master/src/remoshock/web/favicon.png" alt="Logo showing a drawing of a shock collar receiver" height="32">&nbsp;&nbsp; remoshock
+
+Quick links:&nbsp;&nbsp;
+<a href="https://github.com/remoshock/remoshock/blob/master/docs/WARNING.md">
+<img alt="Warning" src="https://img.shields.io/badge/-Warning-red"></a> 
+<a href="https://github.com/remoshock/remoshock/blob/master/docs/FAQ.md">
+<img alt="Frequently Asked Questions" src="https://img.shields.io/badge/-FAQ-yellow"></a> 
+<a href="https://github.com/remoshock/remoshock/blob/master/docs/LICENSE.md">
+<img alt="License: AGPL" src="https://img.shields.io/badge/-AGPL-%23AAF"></a> 
+<a href="https://github.com/remoshock/remoshock/releases">
+<img alt="Changes" src="https://img.shields.io/badge/-Changes-green"></a> 
+
+<div>
+<a href="https://raw.githubusercontent.com/remoshock/remoshock/master/docs/randomizer.png">
+<img style="border: 1px #AAA solid; padding: 1em" alt="Randomizer" src="https://raw.githubusercontent.com/remoshock/remoshock/master/docs/randomizer.png" height="200"></a> 
+<a href="https://raw.githubusercontent.com/remoshock/remoshock/master/docs/pac.jpeg">
+<img style="border: 1px #AAA solid; padding: 1em" alt="Photo of PAC collars with HackRF SDR" src="https://raw.githubusercontent.com/remoshock/remoshock/master/docs/pac.jpeg" height="200"></a> 
+<a href="https://raw.githubusercontent.com/remoshock/remoshock/master/docs/remote.png">
+<img style="border: 1px #AAA solid; padding: 1em" alt="Remote Control User Interface" src="https://raw.githubusercontent.com/remoshock/remoshock/master/docs/remote.png" height="200"></a>
+</div>
+
+<p> remoshock is a computer based remote control for shock collars.
+
+<p>It consists of
+<ul>
+<li> a web-based user interface, that works on mobile
+<li> a randomizer program
+<li> a command line interface program.
+<li> a web-based API
+</ul>
+
+<h2>✔️ Requirements</h2>
+
+<ul>
+<li> One or more compatible <a href="/receiver.html">shock collars</a>.
+<li> A Software Defined Radio (SDR) transmitter that works on the required frequencies (tested using a HackRF device).
+<li> Linux with Python 3 (tested on Ubuntu 20.04).
+<li> Universal Radio Hacker:<br>
+  <code>sudo apt install python3-pip python3-pyqt5; sudo pip3 install urh</code>
+<li> <code>sudo pip3 install remoshock</code> 
+  <br>Alternatively: Download <a href="https://github.com/remoshock/remoshock/releases">remoshock.zip from Github</a> manually.
+<li> Please see <a href="/faq.html">FAQ</a> for troubleshooting tips.
+</ul>
+
+<h2>🔧 Getting Started</h2>
+
+<p> Make sure that <code>urh</code> is working and does recognize your SDR device.
+
+<p> Run <code>remoshockcli</code>. This command will ask you about the number and
+types of receivers in order to generate a <code>remoshock.ini</code> configuration
+file. It will use random values for authentication token and transmitter
+code.
+
+<p> Reset your collar into pairing mode and invoke <code>remoshockcli</code> again.
+After successful pairing, run it a third time, to issue a "beep" command.
+
+<p> If you have more than one receiver, please repeat this step for each
+device: <code>remoshockcli --receiver=1</code>, <code>remoshockcli --receiver=2</code>, etc.
+
+
+<h2>📝 remoshock.ini</h2>
+
+<p>The file <code>remoshock.ini</code> is automatically created with random tokens and transmitter codes
+when you start remoshock for the first time.
+
+
+<pre>
+[global]
+web_port = 7777    
+web_authentication_token = [random unguessable value]
+
+# URH supports the following hardware, that can transmit on 27.195 MHz (upper/lower case is important): 
+# HackRF, LimeSDR
+
+# sdr=HackRF
+</pre>
+
+<p>The <code>[global]</code> contains general settings. <code>web_port</code> and <code>web_authentication_token</code>
+are used by the web-based remote control user interface.
+
+<p> Please configure the name of your SDR transmitter in the configuration
+setting <code>sdr</code> (without the leading # in the above example).
+
+<pre>
+[receiver]
+type=pac
+name=PAC1
+color=#FFD
+transmitter_code=[random 9/16 bit value]
+channel=1
+</pre>
+
+
+<p> Each receiver section has the following parameters:
+
+<ul>
+<li><b>name</b>: A name to display in the user interface
+<li><b>color</b>: A HTML color code used by the user interface
+<li><b>transmitter_code</b>: The transmitter bit code. You can use a random value of exactly 9 bits for PAC collars and 16 bits for all the other devices. Or it can be the same code as your real transmitter. Use network bit order.
+<li><b>channel</b>: The channel used by the remote. For PAC it is the button number as printed on the DXT remote (top right is 1, button left is 6). In E/P-mode the left side is code 0, and the right side is code 2. Button code 7 works as well.
+</ul>
+
+<p> There may be sections for the randomizer, which are documented on the <a href="/application.html">application</a> page.
+
+<h2>🐞 Bugs and Feature Ideas</h2>
+
+<p>Please report bugs and feature ideas as issues on <a href="https://github.com/remoshock/remoshock">https://github.com/remoshock/remoshock</a>.
