@@ -5,9 +5,25 @@
   {%- seo -%}
   <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
   <link rel="icon" type="image/png" href="/favicon.png">
-  <style>
-  input:checked ~ .trigger {
+  <style type="text/css">
+    input:checked ~ .trigger {
       box-shadow: 5px 5px 5px #777;
+    }
+    .cardbox {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em
+    }
+    .card {
+      border: 1px solid #AAA;
+      padding: 1em;
+      height: 6em;
+      width: 20em;
+      border-radius: 10px;
+      box-shadow: 5px 5px 5px #777;
+    }
+    .card:hover {
+      box-shadow: none;
     }
   </style>
 </head>
