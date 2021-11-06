@@ -5,41 +5,11 @@ layout: default
 
 <h1>Setup</h1>
 
-# <img src="https://raw.githubusercontent.com/remoshock/remoshock/master/src/remoshock/web/favicon.png" alt="Logo showing a drawing of a shock collar receiver" height="32">&nbsp;&nbsp; remoshock
 
-Quick links:&nbsp;&nbsp;
-<a href="https://github.com/remoshock/remoshock/blob/master/docs/WARNING.md">
-<img alt="Warning" src="https://img.shields.io/badge/-Warning-red"></a> 
-<a href="https://github.com/remoshock/remoshock/blob/master/docs/FAQ.md">
-<img alt="Frequently Asked Questions" src="https://img.shields.io/badge/-FAQ-yellow"></a> 
-<a href="https://github.com/remoshock/remoshock/blob/master/docs/LICENSE.md">
-<img alt="License: AGPL" src="https://img.shields.io/badge/-AGPL-%23AAF"></a> 
-<a href="https://github.com/remoshock/remoshock/releases">
-<img alt="Changes" src="https://img.shields.io/badge/-Changes-green"></a> 
-
-<div>
-<a href="https://raw.githubusercontent.com/remoshock/remoshock/master/docs/randomizer.png">
-<img style="border: 1px #AAA solid; padding: 1em" alt="Randomizer" src="https://raw.githubusercontent.com/remoshock/remoshock/master/docs/randomizer.png" height="200"></a> 
-<a href="https://raw.githubusercontent.com/remoshock/remoshock/master/docs/pac.jpeg">
-<img style="border: 1px #AAA solid; padding: 1em" alt="Photo of PAC collars with HackRF SDR" src="https://raw.githubusercontent.com/remoshock/remoshock/master/docs/pac.jpeg" height="200"></a> 
-<a href="https://raw.githubusercontent.com/remoshock/remoshock/master/docs/remote.png">
-<img style="border: 1px #AAA solid; padding: 1em" alt="Remote Control User Interface" src="https://raw.githubusercontent.com/remoshock/remoshock/master/docs/remote.png" height="200"></a>
-</div>
-
-<p> remoshock is a computer based remote control for shock collars.
-
-<p>It consists of
-<ul>
-<li> a web-based user interface, that works on mobile
-<li> a randomizer program
-<li> a command line interface program.
-<li> a web-based API
-</ul>
-
-<h2>✔️ Requirements</h2>
+<h2 id="requirements"><a href="#requirements">✔️ Requirements</a></h2>
 
 <ul>
-<li> One or more compatible <a href="/receiver.html">shock collars</a>.
+<li> One or more compatible <a href="/receivers.html">shock collars</a>.
 <li> A Software Defined Radio (SDR) transmitter that works on the required frequencies (tested using a HackRF device).
 <li> Linux with Python 3 (tested on Ubuntu 20.04).
 <li> Universal Radio Hacker:<br>
@@ -49,7 +19,7 @@ Quick links:&nbsp;&nbsp;
 <li> Please see <a href="/faq.html">FAQ</a> for troubleshooting tips.
 </ul>
 
-<h2>🔧 Getting Started</h2>
+<h2 id="gettingstarted"><a href="#gettingstarted">🔧 Getting Started</a></h2>
 
 <p> Make sure that <code>urh</code> is working and does recognize your SDR device.
 
@@ -65,7 +35,7 @@ After successful pairing, run it a third time, to issue a "beep" command.
 device: <code>remoshockcli --receiver=1</code>, <code>remoshockcli --receiver=2</code>, etc.
 
 
-<h2>📝 remoshock.ini</h2>
+<h2 id="remoshockini"><a href="#remoshockini">📝 remoshock.ini</a></h2>
 
 <p>The file <code>remoshock.ini</code> is automatically created with random tokens and transmitter codes
 when you start remoshock for the first time.
@@ -109,6 +79,6 @@ channel=1
 
 <p> There may be sections for the randomizer, which are documented on the <a href="/application.html">application</a> page.
 
-<h2>🐞 Bugs and Feature Ideas</h2>
+<h2 id="bugs"><a href="#bugs">🐞 Bugs and Feature Ideas</a></h2>
 
 <p>Please report bugs and feature ideas as issues on <a href="https://github.com/remoshock/remoshock">https://github.com/remoshock/remoshock</a>.
