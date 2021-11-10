@@ -1,0 +1,42 @@
+---
+layout: default
+title: remoshocksrv
+---
+
+{%- include applicationnav.html -%}
+
+<h1>📱 Interactive Remote Control (remoshockserver)</h1>
+
+<a style="float: right" href="/resources/application/remote.png">
+<img style="border: 1px #AAA solid; padding: 1em" alt="Remote Control User Interface" src="/resources/application/remote.png" height="200"></a>
+
+
+<p> remoshockserver will start a web server, that will provide a user interface
+as shown on the screenshot.
+
+<p> The webpage will work on mobile devices, provided that the mobile device
+can reach the IP address of the computer. For example because both devices
+are in the same Wifi network.
+
+<p> You may make the server available on the Internet, if your computer has a public
+IP-address, either directly or via a VPN/tunnel. Furthermore SSH reverse port
+forwarding does work. This documentation, however, will not go into detail
+on how to make a server available to the Internet because of the security
+implications.
+
+<p> <code>remoshockserver</code> will start the server and print the URL. The port and
+authentication token may be configured in remoshock.ini.
+
+<pre>
+usage: remoshockserver [-h] [-v] [--version]
+
+Shock collar remote control
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --verbose         prints debug messages
+  --version             show program's version number and exit
+
+Please see https://remoshock.github.io for documentation.
+</pre>
+

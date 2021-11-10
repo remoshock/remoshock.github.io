@@ -1,0 +1,67 @@
+---
+layout: default
+title: remoshockrnd
+---
+
+{%- include applicationnav.html -%}
+
+<h1>🎲 Randomizer (remoshockrnd)</h1>
+
+<a style="float: right" href="/resources/application/randomizer.png">
+<img style="border: 1px #AAA solid; padding: 1em" alt="Randomizer" src="/resources/application/randomizer.png" height="200"></a> 
+
+<p> remoshockrnd sends timed commands that can be randomized. For example it may
+send a beep followed a shock every 5 to 15 minutes. For a completely deterministic
+experience, set min and max to the same value.
+
+<p> Example configuration section:
+
+<pre>
+[randomizer]
+beep_probability_percent = 100
+shock_probability_percent = 100
+shock_min_duration_ms = 250
+shock_max_duration_ms = 500
+shock_min_power_percent = 5
+shock_max_power_percent = 10
+pause_min_s = 300
+pause_max_s = 900
+start_delay_min_minutes=0
+start_delay_max_minutes=0
+runtime_min_minutes = 1440
+runtime_max_minutes = 1440
+</pre>
+
+<p> This sample configuration will ensure that there is always (100% probability)
+a beep followed by a shock. The shock duration will vary between 250ms and
+500ms. On a PAC collar this equals to either one or two impulses. The power
+of the shocks will vary between 5% and 10%. And finally the timer will be
+set to a random value between 5 minutes (300s) and 15 minutes (900s).
+
+<p> After the event the timer will be set to a new random value in this range and
+everything will start anew. In this example remoshockrnd will end after one day
+(1440 minutes) or when Ctrl+c is pressed. The runtime starts counting after
+the optional initial start_delay has expired.
+
+<p> <code>remoshockrnd</code>
+
+<p> You can prepare multiple rules by using different [section]-names in remoshock.ini:
+
+<p> <code>remoshockrnd -s other_section</code>
+
+<pre>
+usage: remoshockrnd [-h] [-s SECTION] [-v] [--version]
+
+Shock collar remote randomizer
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -s SECTION, --section SECTION
+                        name of [section] in remoshock.ini to use.
+                        Default is [randomizer].
+  -v, --verbose         prints debug messages
+  --version             show program's version number and exit
+
+Please see https://remoshock.github.io for documentation.
+</pre>
+

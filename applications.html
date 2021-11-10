@@ -5,138 +5,27 @@ layout: default
 
 <h1>Applications</h1>
 
-<h2 id="remoshockcli"><a href="#remoshockcli">🖥 Command line interface (remoshockcli)</a></h2>
 
-<p> remoshockcli allows you to send commands using the command line ("terminal window").
+<div class="cardbox">
 
-<p> By default, it will send a BEEP command to the first receiver configured in `remoshock.ini`.
+<a href="/application/remoshockcli.html" class="card">
+<div>
+<h2>🖥 remoshockcli</h2>
+A command line interface (terminal) program.
+</div>
+</a>
 
-<p> For example, to send a shock with 10% power for a duration of 250ms to the first receiver:
+<a href="/application/remoshockserver.html" class="card">
+<div>
+<h2>📱 remoshockserver</h2>
+A server that hosts a web-based remote control.
+</div>
+</a>
 
-<p> <code>remoshockcli --receiver 1 --action SHOCK --power 10 --duration 250</code>
+<a href="/application/remoshockrnd.html" class="card">
+<div>
+<h2>🎲 remoshockrnd</h2>
+A command line program that will send commands at random times.
+</div>
+</a>
 
-<p> The following actions are supported:
-
-<ul>
-<li><b>light</b>: blinks the light. Note: This might cause a tiny shock on some collars (e. g. PAC).
-<li><b>beep</b>: plays the beep sound.
-<li><b>vibrate</b>: lets the receiver vibrate. Note: This will beep on collars without vibration support (e. g. PAC)
-<li><b>shock</b>: triggers a shock.
-<li><b>beepshock</b>: plays a beep sound, waits one second, and then triggers a shock according to parameters.
-</ul>
-
-<pre>
-usage: remoshockcli [-h] [-r n] [-a {LIGHT,BEEP,VIBRATE,SHOCK,BEEPSHOCK}] [-d n] [-p n] [-v] [--version]
-
-Shock collar remote
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -a {LIGHT,BEEP,VIBRATE,SHOCK,BEEPSHOCK},
-  --action {LIGHT,BEEP,VIBRATE,SHOCK,BEEPSHOCK}
-                        action to perform
-  -d n, --duration n    duration in ms. Duration is rounded to a multiple
-                        of the impulse length (e. g. 250ms for PAC)
-  -p n, --power n       power level (0-100)
-  -r n, --receiver n    index of receiver entry from remoshock.ini, starting at 1
-  -v, --verbose         prints debug messages
-  --version             show program's version number and exit
-
-Please see https://remoshock.github.io for documentation.
-</pre>
-
-
-<h2 id="remoshockserver"><a href="#remoshockserver">📱 Interactive Remote Control (remoshockserver)</a></h2>
-
-<a style="float: right" href="https://raw.githubusercontent.com/remoshock/remoshock/master/docs/remote.png">
-<img style="border: 1px #AAA solid; padding: 1em" alt="Remote Control User Interface" src="https://raw.githubusercontent.com/remoshock/remoshock/master/docs/remote.png" height="200"></a>
-
-
-<p> remoshockserver will start a web server, that will provide a user interface
-as shown on the screenshot.
-
-<p> The webpage will work on mobile devices, provided that the mobile device
-can reach the IP address of the computer. For example because both devices
-are in the same Wifi network.
-
-<p> You may make the server available on the Internet, if your computer has a public
-IP-address, either directly or via a VPN/tunnel. Furthermore SSH reverse port
-forwarding does work. This documentation, however, will not go into detail
-on how to make a server available to the Internet because of the security
-implications.
-
-<p> <code>remoshockserver</code> will start the server and print the URL. The port and
-authentication token may be configured in remoshock.ini.
-
-<pre>
-usage: remoshockserver [-h] [-v] [--version]
-
-Shock collar remote control
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -v, --verbose         prints debug messages
-  --version             show program's version number and exit
-
-Please see https://remoshock.github.io for documentation.
-</pre>
-
-<h2 id="remoshockrnd"><a href="#remoshockrnd">🎲 Randomizer (remoshockrnd)</a></h2>
-
-<a style="float: right" href="https://raw.githubusercontent.com/remoshock/remoshock/master/docs/randomizer.png">
-<img style="border: 1px #AAA solid; padding: 1em" alt="Randomizer" src="https://raw.githubusercontent.com/remoshock/remoshock/master/docs/randomizer.png" height="200"></a> 
-
-<p> remoshockrnd sends timed commands that can be randomized. For example it may
-send a beep followed a shock every 5 to 15 minutes. For a completely deterministic
-experience, set min and max to the same value.
-
-<p> Example configuration section:
-
-<pre>
-[randomizer]
-beep_probability_percent = 100
-shock_probability_percent = 100
-shock_min_duration_ms = 250
-shock_max_duration_ms = 500
-shock_min_power_percent = 5
-shock_max_power_percent = 10
-pause_min_s = 300
-pause_max_s = 900
-start_delay_min_minutes=0
-start_delay_max_minutes=0
-runtime_min_minutes = 1440
-runtime_max_minutes = 1440
-</pre>
-
-<p> This sample configuration will ensure that there is always (100% probability)
-a beep followed by a shock. The shock duration will vary between 250ms and
-500ms. On a PAC collar this equals to either one or two impulses. The power
-of the shocks will vary between 5% and 10%. And finally the timer will be
-set to a random value between 5 minutes (300s) and 15 minutes (900s).
-
-<p> After the event the timer will be set to a new random value in this range and
-everything will start anew. In this example remoshockrnd will end after one day
-(1440 minutes) or when Ctrl+c is pressed. The runtime starts counting after
-the optional initial start_delay has expired.
-
-<p> <code>remoshockrnd</code>
-
-<p> You can prepare multiple rules by using different [section]-names in remoshock.ini:
-
-<p> <code>remoshockrnd -s other_section</code>
-
-<pre>
-usage: remoshockrnd [-h] [-s SECTION] [-v] [--version]
-
-Shock collar remote randomizer
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -s SECTION, --section SECTION
-                        name of [section] in remoshock.ini to use.
-                        Default is [randomizer].
-  -v, --verbose         prints debug messages
-  --version             show program's version number and exit
-
-Please see https://remoshock.github.io for documentation.
-</pre>

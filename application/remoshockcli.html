@@ -1,0 +1,47 @@
+---
+layout: default
+title: remoshockcli
+---
+
+{%- include applicationnav.html -%}
+
+<h1>🖥 Command line interface (remoshockcli)</h1>
+
+<p> remoshockcli allows you to send commands using the command line ("terminal window").
+
+<p> By default, it will send a BEEP command to the first receiver configured in `remoshock.ini`.
+
+<p> For example, to send a shock with 10% power for a duration of 250ms to the first receiver:
+
+<p> <code>remoshockcli --receiver 1 --action SHOCK --power 10 --duration 250</code>
+
+<p> The following actions are supported:
+
+<ul>
+<li><b>light</b>: blinks the light. Note: This might cause a tiny shock on some collars (e. g. PAC).
+<li><b>beep</b>: plays the beep sound.
+<li><b>vibrate</b>: lets the receiver vibrate. Note: This will beep on collars without vibration support (e. g. PAC)
+<li><b>shock</b>: triggers a shock.
+<li><b>beepshock</b>: plays a beep sound, waits one second, and then triggers a shock according to parameters.
+</ul>
+
+<pre>
+usage: remoshockcli [-h] [-r n] [-a {LIGHT,BEEP,VIBRATE,SHOCK,BEEPSHOCK}] [-d n] [-p n] [-v] [--version]
+
+Shock collar remote
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -a {LIGHT,BEEP,VIBRATE,SHOCK,BEEPSHOCK},
+  --action {LIGHT,BEEP,VIBRATE,SHOCK,BEEPSHOCK}
+                        action to perform
+  -d n, --duration n    duration in ms. Duration is rounded to a multiple
+                        of the impulse length (e. g. 250ms for PAC)
+  -p n, --power n       power level (0-100)
+  -r n, --receiver n    index of receiver entry from remoshock.ini, starting at 1
+  -v, --verbose         prints debug messages
+  --version             show program's version number and exit
+
+Please see https://remoshock.github.io for documentation.
+</pre>
+
