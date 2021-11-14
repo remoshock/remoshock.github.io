@@ -1,0 +1,85 @@
+---
+layout: default
+title: REST API
+---
+
+<p><a href="/">remoshock</a> &gt; <a href="/development.html">Development</a> &gt; <a href="/development/rest.html">REST API</a>
+<h1>REST API</h1>
+
+<p><b>TODO:</b> The REST webservice will be documented here.
+
+
+<h2>/remoshock/command</h2>
+
+This REST service performances an action, for example it will triggering a shock.
+
+<pre>
+
+async function command(token, receiver, action, power, duration) {
+	let url = "/remoshock/command"
+            + "?receiver=" + escape(receiver)
+            + "&action=" + escape(action)
+            + "&power=" + escape(power)
+            + "&duration=" + escape(duration);
+	return fetch(url, {
+		method: "POST",
+		headers: {
+			Authorization: "bearer " + token
+		}
+	});
+}
+
+await command(token, 1, "shock", 5, 250);
+</pre>
+
+<h2>/remoshock/config</h2>
+
+This REST service will provide configuration and receiver information. For example:
+
+<pre>
+{
+   "applications": {
+      "randomizer": {
+         "beep_probability_percent": "100",
+         "shock_probability_percent": "100",
+         "shock_min_duration_ms": "250",
+         "shock_max_duration_ms": "250",
+         "shock_min_power_percent": "5",
+         "shock_max_power_percent": "10",
+         "pause_min_s": "300",
+         "pause_max_s": "900",
+         "start_delay_min_minutes": "0",
+         "start_delay_max_minutes": "0",
+         "runtime_min_minutes": "1440",
+         "runtime_max_minutes": "1440"
+      }
+   },
+   "receivers": [
+      {
+         "receiver_type": "PAC",
+         "name": "PAC1",
+         "color": "#FFD",
+         "action_light": false,
+         "action_beep": true,
+         "action_vibrate": false,
+         "action_shock": true,
+         "duration_min_ms": 250,
+         "duration_increment_ms": 250,
+         "awake_time_s": 0
+      },
+      {
+         "receiver_type": "wodondog",
+         "name": "Wodondog1",
+         "color": "#DDF",
+         "action_light": true,
+         "action_beep": true,
+         "action_vibrate": true,
+         "action_shock": true,
+         "duration_min_ms": 500,
+         "duration_increment_ms": 500,
+         "awake_time_s": 300
+      },
+   ]
+}
+</pre>
+
