@@ -13,7 +13,7 @@ title: REST API
 
 This REST service performances an action, for example it will triggering a shock.
 
-<pre>
+{% highlight javascript %}
 
 async function command(token, receiver, action, power, duration) {
 	let url = "/remoshock/command"
@@ -30,13 +30,13 @@ async function command(token, receiver, action, power, duration) {
 }
 
 await command(token, 1, "shock", 5, 250);
-</pre>
+{% endhighlight %}
 
 <h2>/remoshock/config</h2>
 
 This REST service will provide configuration and receiver information. For example:
 
-<pre>
+{% highlight json %}
 {
    "applications": {
       "randomizer": {
@@ -81,5 +81,6 @@ This REST service will provide configuration and receiver information. For examp
       },
    ]
 }
+{% endhighlight %}
 </pre>
 
