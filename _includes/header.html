@@ -2,14 +2,16 @@
 
   <div style="background-color: #FFA; padding: 1em">
     <div class="wrapper">
-  	  <img src="/resources/banner.webp">
+      <a class="site-title" href="/">
+        <img src="/resources/banner.webp" width="1041" height="252"
+        alt="Banner image showing showing thread images: randomizer, photos of receivers and web-based remote-control.">
+      </a>
   	</div>
   </div>
   <div class="wrapper">
     {%- assign default_paths = site.pages | map: "path" -%}
     {%- assign page_paths = site.header_pages | default: default_paths -%}
-    <a class="site-title" href="/"><img src="/favicon.png" style="height: 1.2em; vertical-align: text-bottom;"></a>
-    <a class="site-title" rel="author" href="/">{{ site.title | escape }}</a>
+    <a class="site-title" href="/"><img src="/favicon.png" height="64" width="64" style="height: 1.2em; width: auto; vertical-align: text-bottom" alt=""> {{ site.title | escape }}</a>
 
     {%- if page_paths -%}
       <nav class="site-nav" style="top: unset; text-align: left">
