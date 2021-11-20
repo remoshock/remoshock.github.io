@@ -1,0 +1,38 @@
+---
+layout: default
+title: Source Code
+---
+
+<a href="/">remoshock</a> &gt; <a href="/development.html">Development</a> &gt; <a href="/development/source.html">Source Code</a>
+<h1>Source Code</h1>
+
+<p> Before you start working on the source code, please refer to the <a href="/setup.html">Setup Guide</a>.
+
+<h2 id="github"><a href="#github"><svg class="svg-icon"><use xlink:href="{{ '/assets/minima-social-icons.svg#github' | relative_url }}"></use></svg> Get the source code</a></h2>
+
+<p> <i>remoshock</i> is open source. You can find the source code at <a href="https://github.com/remoshock/remoshock">https://github.com/remoshock/remoshock</a>
+
+<p> To checkout the project and run the cli tool:
+
+<pre>
+git clone git@github.com:remoshock/remoshock
+cd remoshock/src/
+./remoshockcli 
+</pre>
+
+<h2 id="structure"><a href="#structure">🧭 Code Structure</a></h2>
+
+
+
+<table>
+<tr><th>Package</th><th>Description</th>
+<tr><td> src </td><td>root directory of the source tree contains the command line tool entry points.</td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp;&nbsp;remoshock </td><td>remoshock package with the implementation of the entry points</td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;core</td> <td>remoshock.py manages everything: It initializes the software and dispatches commands to the appropriate receiver. config.py implements the configuration wizard used when remoshock is started for the very first time. </td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;receiver</td> <td>receiver.py specifies the interface which is implemented by specialized classes for various receivers (shock collars brands)</td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scheduler</td> <td>a scheduler which will invoke specified commands at a specified time in the future</td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sdr</td> <td>access to the software defined radio hardware. The default implementation urhcli.py invokes the command line interface of Universal Radio Hacker. urhinternal.py is a hack that invokes internals of URH in order to prevent a 1s delay in the HackRF implementation.</td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;util</td> <td>utility classes e. g. logging and power management</td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;web</td> <td>HTML and JavaScript used by the web application</td></tr>
+
+</table>
