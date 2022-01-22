@@ -1,0 +1,32 @@
+---
+layout: default
+title: Analyze transmission protocols
+---
+
+<a href="/">remoshock</a> &gt; <a href="/development.html">Development</a> &gt; <a href="/development/analyze.html">Analyze Transmission Protocols</a>
+<h1>🔍 Analyze Transmission Protocols</h1>
+
+One day, this will be a nice guide. For now, it is just a collections of notes
+
+
+<ul>
+<li> In Universal Radio Hacker (urh), record the signal. It is most likely on one of the following frequncies: 27M, 915M, 433M.
+Do not forget the "M".
+
+<li> After recoding the signal, delete all the empty spaces (as they use up a lot of RAM and harddisk space) and save
+
+<li> In view "spectrogram" apply a bandwidth filter around the yellow line.
+
+<li> Select ASK (for on-off-keying) or FSK (when the signal jumps between two frequencies)
+
+<li> correct noise value which tends to see everything as noise
+
+<li> View Demodulated and pull the green-red-devider to the correct position: Careful do not confuse a message and the pause between two messages as 1 and 0, but make sure to use the correct zoom level.
+
+<li> ....
+</ul>
+
+
+Please have a look at the <a href="source.html#programstructure">program structure</a> to find the source code of implementation for known receivers.
+
+

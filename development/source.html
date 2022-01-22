@@ -20,13 +20,51 @@ cd remoshock/src/
 ./remoshockcli 
 </pre>
 
-<h2 id="structure"><a href="#structure">🧭 Code Structure</a></h2>
+<h2 id="concepts"><a href="#concepts">🔀 Concepts</a></h2>
+
+<h3 id="command"><a href="#command">Commands and Actions</a></h3>
+
+<a href="command.svg"><img src="command.svg"></a>
+
+<p> A command consists of the number of the targeted receiver, the action to perform (e. g. VIBRATE), 
+the power level in percent and the duration in milliseconds. The main actions are BEEP, VIBRATE and SHOCK.
+
+<p> For condition training, there is a special action called BEEPSHOCK. It will play a beep sound, wait one
+second and follow up with a shock of the specified power level and duration.
+
+<p> Some receiver types will shut down after a period of inactivity with neither movement nor commands. The action
+KEEPAWAKE will be sent to those receivers periodically. The KEEPAWAKE commands are only sent, if they are
+required by the configured receiver type. Furthermore, they are only sent, if remoshockserver or remoshockrnd
+are running. If you are using remoshockcli, you will have to deal with sleep mode yourself.
 
 
+<h3 id="programstructure"><a href="#programstructure">Program Structure</a></h3>
+
+<a href="programstructure.svg"><img src="programstructure.svg"></a>
+
+<p> The central class is Remoshock. It receives commands from the classes on the left hand side.
+Based on the configuration file $HOME/.config/remoshock.ini. It sets up a list of receivers, to which
+it forwards commands.
+
+<p> There is one class for each receiver type, which will generate the appropriate message
+based on the command details. In those classes the device specific logic is implemented. So if you
+plan to add support for an additional receiver, here is the place to look for examples. There is a 
+document with information on how to <a href="analyze.html">analyze</a> a remote protocol.
+
+<p> Receiver classes use an implementation of the SdrSender class to actually transmit the message.
+At this time, there are two implementation: One uses the command line tool provided by Universal Radio Hacker.
+The other one calls directly into the URH program code in order to prevent a 1 second delay.
+
+<p> One day, there should be a SdrSender implementation which uses the small hackrf_tramsfer cli instead of URH.
+Further more, it is possible to write an implementation for a cheap 433MHz transmitter boards instead
+of a software defined radio. But this will only work with receivers operating on 433MHz using OOK.
+
+
+<h2 id="structure"><a href="#structure">🧭 Directory Structure</a></h2>
 
 <table>
 <tr><th>Package</th><th>Description</th>
-<tr><td> src </td><td>root directory of the source tree contains the command line tool entry points.</td></tr>
+<tr><td> src </td><td>root directory of the source tree, contains the command line tool entry points.</td></tr>
 <tr><td> &nbsp;&nbsp;&nbsp;&nbsp;remoshock </td><td>remoshock package with the implementation of the entry points</td></tr>
 <tr><td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;core</td> <td>remoshock.py manages everything: It initializes the software and dispatches commands to the appropriate receiver. config.py implements the configuration wizard used when remoshock is started for the very first time. </td></tr>
 <tr><td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;receiver</td> <td>receiver.py specifies the interface which is implemented by specialized classes for various receivers (shock collars brands)</td></tr>
@@ -34,5 +72,18 @@ cd remoshock/src/
 <tr><td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sdr</td> <td>access to the software defined radio hardware. The default implementation urhcli.py invokes the command line interface of Universal Radio Hacker. urhinternal.py is a hack that invokes internals of URH in order to prevent a 1s delay in the HackRF implementation.</td></tr>
 <tr><td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;util</td> <td>utility classes e. g. logging and power management</td></tr>
 <tr><td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;web</td> <td>HTML and JavaScript used by the web application</td></tr>
-
+<tr><td> &nbsp;&nbsp;&nbsp;&nbsp;test </td><td>automated unit tests</td></tr>
 </table>
+
+
+<h2 id="qa"><a href="#qa">🔍 Quality Assurance</a></h2>
+
+The following commands are executed automatically on Github. But you can invoke
+them locally to test your changes before creating a pull request:
+
+<pre>
+cd src
+flake8 --ignore E501,E303,W503
+python3 -m unittest
+</pre>
+

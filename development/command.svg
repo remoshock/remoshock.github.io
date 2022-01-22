@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="396px"
+	height="136px" viewBox="-0.5 -0.5 395 136">
+	<defs>
+	</defs>
+	<g>
+		<rect x="291" y="0" width="104"
+			height="136" fill="#7acff5" stroke="#000000" pointer-events="all" />
+		<path
+			d="M 291 31.43 L 395 31.43" fill="none" stroke="#000000"
+			stroke-miterlimit="10" pointer-events="all" />
+		<g fill="#000000"
+			font-family="sans-serif" font-weight="bold" text-anchor="middle"
+			font-size="12px">
+			<text x="342.5" y="11.5">&lt;&lt;enum&gt;&gt;</text>
+			<text x="342.5" y="25.5">Action</text>
+		</g>
+		<rect x="291" y="34.43" width="104" height="16"
+			fill="none" stroke="none" pointer-events="all" />
+		<g fill="#000000" font-family="sans-serif"
+			font-size="12px">
+			<text x="297.5" y="46.93">LIGHT</text>
+		</g>
+		<rect x="291" y="50.43" width="104" height="16"
+			fill="none" stroke="none" pointer-events="all" />
+		<g fill="#000000" font-family="sans-serif"
+			font-size="12px">
+			<text x="297.5" y="62.93">BEEP</text>
+		</g>
+		<rect x="291" y="66.43" width="104" height="16"
+			fill="none" stroke="none" pointer-events="all" />
+		<g fill="#000000" font-family="sans-serif"
+			font-size="12px">
+			<text x="297.5" y="78.93">VIBRATE</text>
+		</g>
+		<rect x="291" y="82.43" width="104" height="16"
+			fill="none" stroke="none" pointer-events="all" />
+		<g fill="#000000" font-family="sans-serif"
+			font-size="12px">
+			<text x="297.5" y="94.93">SHOCK</text>
+		</g>
+		<rect x="291" y="98.43" width="104" height="16"
+			fill="none" stroke="none" pointer-events="all" />
+		<g fill="#000000" font-family="sans-serif"
+			font-size="12px">
+			<text x="297.5" y="110.93">KEEPAWAKE</text>
+		</g>
+		<rect x="291" y="114.43" width="104" height="16"
+			fill="none" stroke="none" pointer-events="all" />
+		<g fill="#000000" font-family="sans-serif"
+			font-size="12px">
+			<text x="297.5" y="126.93">BEEPSHOCK</text>
+		</g>
+		<rect x="0" y="17.51"
+			width="192.32" height="100.97" fill="#7acff5" stroke="#000000"
+			pointer-events="all" />
+		<path
+			d="M 0 34.94 L 192.32 34.94" fill="none" stroke="#000000"
+			stroke-miterlimit="10" pointer-events="all" />
+		<g fill="#000000"
+			font-family="sans-serif" font-weight="bold" text-anchor="middle"
+			font-size="12px">
+			<text x="95.66" y="29.01">Command</text>
+		</g>
+		<rect x="0" y="37.94" width="192.32" height="16"
+			fill="none" stroke="none" pointer-events="all" />
+		<g fill="#000000" font-family="sans-serif"
+			font-size="12px">
+			<text x="6.5" y="50.44">receiver: number</text>
+		</g>
+		<rect x="0" y="53.94" width="192.32" height="16"
+			fill="none" stroke="none" pointer-events="all" />
+		<g fill="#000000" font-family="sans-serif"
+			font-size="12px">
+			<text x="6.5" y="66.44">action: Action</text>
+		</g>
+		<rect x="0" y="69.94" width="192.32" height="16"
+			fill="none" stroke="none" pointer-events="all" />
+		<g fill="#000000" font-family="sans-serif"
+			font-size="12px">
+			<text x="6.5" y="82.44">power: percent</text>
+		</g>
+		<rect x="0" y="85.94" width="192.32" height="16"
+			fill="none" stroke="none" pointer-events="all" />
+		<g fill="#000000" font-family="sans-serif"
+			font-size="12px">
+			<text x="6.5" y="98.44">duration: milliseconds</text>
+		</g>
+		<path
+			d="M 192.32 68 L 284.63 68" fill="none" stroke="#000000"
+			stroke-miterlimit="10" pointer-events="stroke" />
+		<path
+			d="M 289.88 68 L 282.88 71.5 L 284.63 68 L 282.88 64.5 Z"
+			fill="#000000" stroke="#000000" stroke-miterlimit="10"
+			pointer-events="all" />
+		<path
+			d="M 192.32 68 L 284.63 68" fill="none" stroke="#000000"
+			stroke-miterlimit="10" pointer-events="stroke" />
+		<path
+			d="M 289.88 68 L 282.88 71.5 L 284.63 68 L 282.88 64.5 Z"
+			fill="#000000" stroke="#000000" stroke-miterlimit="10"
+			pointer-events="all" />
+	</g>
+</svg>
