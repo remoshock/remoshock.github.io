@@ -6,30 +6,47 @@ title: REST API
 <a href="/">remoshock</a> &gt; <a href="/development.html">Development</a> &gt; <a href="/development/rest.html">REST API</a>
 <h1>REST API</h1>
 
-<p><b>TODO:</b> The REST webservice will be documented here.
-
 
 <h2>/remoshock/command</h2>
 
-This REST service performances an action, for example it will triggering a shock.
+<p> This REST service performances an action ("BEEP", "VIBRATE", "SHOCK", "BEEPSHOCK")
+for the specified duration with the specified power level.
 
+<h3>Curl example</h3>
+<pre>
+curl -X POST \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer $authenticationToken' \
+  -d '{"receiver": 1, "action": "BEEP", "power": 5, "duration": 500}' \
+  http://localhost:7777/remoshock/command
+</pre>
+
+<p> Replace $authenticationToken with the value from .config/remoshock.ini
+
+<h3>JavaScript example</h3>
 {% highlight javascript %}
 
-async function command(token, receiver, action, power, duration) {
+async function command(authenticationToken, receiverNo, action,
+                       powerInPercent, durationInMs) {
+
 	let url = "/remoshock/command"
-            + "?receiver=" + escape(receiver)
-            + "&action=" + escape(action)
-            + "&power=" + escape(power)
-            + "&duration=" + escape(duration);
-	return fetch(url, {
+	let command = {
+		"receiver": receiverNo,
+		"action": action,
+		"power": powerInPercent,
+		"duration": durationInMs
+	}
+	return await fetch(url, {
 		method: "POST",
 		headers: {
-			Authorization: "bearer " + token
-		}
+			"Authorization": "Bearer " + authenticationToken,
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(data)
 	});
 }
 
-await command(token, 1, "shock", 5, 250);
+command(authenticationToken, 1, "BEEP", 5, 500);
 {% endhighlight %}
 
 <h2>/remoshock/config</h2>
