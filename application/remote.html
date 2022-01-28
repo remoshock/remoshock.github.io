@@ -1,0 +1,31 @@
+---
+layout: default
+title: Remote
+---
+
+{%- include applicationnav.html -%}
+
+<a href="/">remoshock</a> &gt; <a href="/applications.html">Applications</a> &gt; <a href="/application/remote.html">Remote</a>
+<h1>📱 Interactive Remote Control</h1>
+
+<a style="float: right" href="/resources/application/remote.png">
+<img style="border: 1px #AAA solid; padding: 1em" alt="Remote Control User Interface" src="/resources/application/remote.png" width="200px"></a>
+
+<p> Interactive Remote Control allows to trigger from a web browser,
+e. g. from a mobile phone.
+
+<p> The remote control offers one colored box for each configured receiver. The
+title and color can be defined in .config/remoshock.ini.
+
+<p> There are two input fields with an attached slider each. The first one configures
+the power level for vibration and shock commands in percent. The second one defines the
+duration.
+
+<p> There is a button for a beep sound and a shock. There is an additional button,
+which shows both icons. This button will trigger one beep sound, wait one second, and
+then trigger a shock. The shock will obey power level and duration as set above.
+
+<p> You will need to start <a href="remoshockserver.html"><tt>remoteshockserver</tt></a>
+in a terminal window on the computer connected to the SDR. It will start a web
+server and print the url.
+

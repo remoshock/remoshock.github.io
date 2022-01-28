@@ -6,18 +6,22 @@ title: remoshocksrv
 {%- include applicationnav.html -%}
 
 <a href="/">remoshock</a> &gt; <a href="/applications.html">Applications</a> &gt; <a href="/application/remoshockserver.html">remoshockserver</a>
-<h1>📱 Interactive Remote Control (remoshockserver)</h1>
+<h1>🗄 remoshockserver</h1>
 
-<a style="float: right" href="/resources/application/remote.png">
-<img style="border: 1px #AAA solid; padding: 1em" alt="Remote Control User Interface" src="/resources/application/remote.png" height="200"></a>
+<a style="float: right" href="/resources/application/remoshockserver.png">
+<img alt="remoshockserver" src="/resources/application/remoshockserver.png" width="400px"></a>
 
 
-<p> remoshockserver will start a web server, that will provide a user interface
-as shown on the screenshot.
+<p> remoshockserver will start a web server which is used by various remoshock
+applications:
 
-<p> The webpage will work on mobile devices, provided that the mobile device
+<ul>
+<li> <a href="remote.html">📱 remote</a>
+</ul>
+
+<p> The webpages will work on mobile devices, provided that the mobile device
 can reach the IP address of the computer. For example because both devices
-are in the same Wifi network.
+are in the same Wifi network without client isolation.
 
 <p> You may make the server available on the Internet, if your computer has a public
 IP-address, either directly or via a VPN/tunnel. Furthermore SSH reverse port
