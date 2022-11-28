@@ -66,6 +66,8 @@ name=PAC1
 color=#FFD
 transmitter_code=[random 9/16 bit value]
 channel=1
+limit_shock_max_power_percent=100
+limit_shock_max_duration_ms=2000
 </pre>
 
 
@@ -76,6 +78,8 @@ channel=1
 <li><b>color</b>: A HTML color code used by the user interface
 <li><b>transmitter_code</b>: The transmitter bit code. You can use a random value of exactly 9 bits for PAC collars and 16 bits for all the other devices. Or it can be the same code as your real transmitter. Use network bit order.
 <li><b>channel</b>: The channel used by the remote. For PAC it is the button number as printed on the DXT remote (top right is 1, button left is 6). In E/P-mode the left side is code 0, and the right side is code 2. Button code 7 works as well.
+<li><b>limit_shock_max_power_percent</b>: Limits the maximum power level. Default: 100
+<li><b>limit_shock_max_duration_ms</b>: Limits the maximum duration of a command. Default: 10000
 </ul>
 
 <p> There may be sections for the randomizer, which are documented on the <a href="/applications.html">application</a> page.
