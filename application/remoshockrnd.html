@@ -11,14 +11,15 @@ title: remoshockrnd
 <a style="float: right" href="/resources/application/randomizer.png">
 <img style="border: 1px #AAA solid; padding: 1em" alt="Randomizer" src="/resources/application/randomizer.png" height="200"></a> 
 
-<p> remoshockrnd sends timed commands that can be randomized. For example it may
+<p> remoshockrnd sends randomized commands at random times. For example it may
 send a beep followed a shock every 5 to 15 minutes. For a completely deterministic
-experience, set min and max to the same value.
+experience, you can set min and max to the same value.
 
 <p> There is a web based alternative available, that can be configured
-using a mobile phone. Please see <a href="randomizer.html">Randomizer (Web)</a> for details.
+using a computer or  mobile phone. Please see
+<a href="randomizer.html">Randomizer (Web)</a> for details.
 
-<p> Example configuration section:
+<h2> Example configuration section:</h2>
 
 <pre>
 [randomizer]
@@ -38,14 +39,39 @@ runtime_max_minutes = 1440
 
 <p> This sample configuration will ensure that there is always (100% probability)
 a beep followed by a shock. The shock duration will vary between 250ms and
-500ms. On a PAC collar this equals to either one or two impulses. The power
-of the shocks will vary between 5% and 10%. And finally the timer will be
-set to a random value between 5 minutes (300s) and 15 minutes (900s).
+500ms. The power of the shocks will vary between 5% and 10%. And finally the timer
+will be set to a random value between 5 minutes (300s) and 15 minutes (900s).
 
 <p> After the event the timer will be set to a new random value in this range and
 everything will start anew. In this example remoshockrnd will end after one day
 (1440 minutes) or when Ctrl+c is pressed. The runtime starts counting after
 the optional initial start_delay has expired.
+
+<h2>Receiver specific configuration</h2>
+
+<p> The shock min and max duration as well as the min and max power level can be overridden
+on a per receiver basis:
+
+<pre>
+[receiver]
+type=PAC
+name=PAC1
+color=#FFD
+transmitter_code=101010101
+channel=1
+random_shock_min_duration_ms = 250
+random_shock_max_duration_ms = 500
+random_shock_min_power_percent = 10
+random_shock_max_power_percent = 20
+</pre>
+
+<p> If one or more random_*-settings are missing in a receiver section, the default
+values form the randomizer section are used.
+
+<p> Hint: Multiple receiver sections can use the same transmitter_code and channel
+in order to support multiple configuration of the same device. 
+
+<h2>Command line parameters</h2>
 
 <p> <code>remoshockrnd</code>
 
