@@ -35,6 +35,7 @@ start_delay_min_minutes=0
 start_delay_max_minutes=0
 runtime_min_minutes = 1440
 runtime_max_minutes = 1440
+probability_weight = 1
 </pre>
 
 <p> This sample configuration will ensure that there is always (100% probability)
@@ -63,13 +64,16 @@ random_shock_min_duration_ms = 250
 random_shock_max_duration_ms = 500
 random_shock_min_power_percent = 10
 random_shock_max_power_percent = 20
+random_probability_weight = 1
 </pre>
 
 <p> If one or more random_*-settings are missing in a receiver section, the default
 values form the randomizer section are used.
 
 <p> Hint: Multiple receiver sections can use the same transmitter_code and channel
-in order to support multiple configuration of the same device. 
+in order to support multiple configuration of the same device. Setting 
+random_probability_weight to 0 will exclude that receiver from being used by the
+randomizer. Higher numbers will cause the randomizer to prefer this receiver.
 
 <h2>Command line parameters</h2>
 
