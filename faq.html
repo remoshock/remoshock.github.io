@@ -112,8 +112,29 @@ hackrf_open() failed: Access denied (insufficient permissions) (-1000)
 Please create the file /etc/udev/rules.d/53-hackrf.rules with the
 content from <a href="https://raw.githubusercontent.com/mossmann/hackrf/master/host/libhackrf/53-hackrf.rules">https://raw.githubusercontent.com/mossmann/hackrf/master/host/libhackrf/53-hackrf.rules</a>
 
+<pre>
+	# grant access to user in group plugdev
+	ATTR{idVendor}=="1d50", ATTR{idProduct}=="604b", SYMLINK+="hackrf-jawbreaker-%k", MODE="660", GROUP="plugdev"  
+	ATTR{idVendor}=="1d50", ATTR{idProduct}=="6089", SYMLINK+="hackrf-one-%k", MODE="660", GROUP="plugdev"
+	ATTR{idVendor}=="1d50", ATTR{idProduct}=="cc15", SYMLINK+="rad1o-%k", MODE="660", GROUP="plugdev"
+	ATTR{idVendor}=="1fc9", ATTR{idProduct}=="000c", SYMLINK+="nxp-dfu-%k", MODE="660", GROUP="plugdev"
+</pre>
+
+
 <p> Furthermore please make sure that the user in the group plugdev.
 
+
+<h3 id="verbose">HackRF stops working after inactivity</h3>
+
+<p>The HackRF device seems to have problems with USB suspension. Please add the following lines to /etc/udev/rules.d/53-hackrf.rules</p>
+
+<pre>
+	# disable USB autosuspend for HackRF
+	ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="1d50", ATTR{idProduct}=="604b", ATTR{power/autosuspend}="-1"
+	ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="1d50", ATTR{idProduct}=="6089", ATTR{power/autosuspend}="-1"
+	ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="1d50", ATTR{idProduct}=="cc15", ATTR{power/autosuspend}="-1"
+	ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="1fc9", ATTR{idProduct}=="000c", ATTR{power/autosuspend}="-1"
+</pre>
 
 <h3 id="verbose">It is not working, why?</h3>
 
