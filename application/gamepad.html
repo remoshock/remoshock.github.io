@@ -1,0 +1,40 @@
+---
+layout: default
+title: Gamepad
+---
+
+{%- include applicationnav.html -%}
+
+<a href="/">remoshock</a> &gt; <a href="/applications.html">Applications</a> &gt; <a href="/application/gamepad.html">Gamepad Game</a>
+<h1>🎮 Gamepad Game</h1>
+
+<a style="float: right" href="/resources/application/gamepad.png">
+<img style="border: 1px #AAA solid; padding: 1em" alt="Gamepad Game" src="/resources/application/gamepad.png" width="200px"></a>
+
+<p> The gamepad game will highlight buttons on screen that a player has to press on a
+gamepad. In the screenshot the buttons LT, RT and X have to be pressed. The green border
+around LT and RT indicate that these buttons are actually pressed.
+
+<p> Both normal gamepads and dance mats are supported. For gamepads it is recommanded to
+require that LT and RT are held down at all times. This prevents the player from taking
+either hand away from the gamepad.
+
+<p> In the settings dialog various parameters can be configured. The game runs for the
+number of minutes specified as "Runtime". "Pich interval" indicates the number of seconds
+before a new button is selected. Please note that higher timing might seem easier but
+might actually be harder on a mental level. The player must press the button within
+the specified "Reaction time" in order to avoid punishment. The punishment is repeated
+after the "Immune time" expired, unless the player is complying.
+
+<p> The setting "Play buttons" indicates which buttons are in player. This might be important
+if your controller is missing buttons or if you are using a dance pad with different buttons.
+"Hold buttons" is similar to "Play buttons" but these buttons have to be pressed the whole time.
+This can be used to prevent the player from removing either hand from the gamepad.
+
+<a href="/resources/application/gamepad-settings.png">
+<img style="border: 1px #AAA solid; padding: 1em" alt="Gamepad Game Settings" src="/resources/application/gamepad-settings.png"></a>
+
+<p> You will need to start <a href="remoshockserver.html"><tt>remoteshockserver</tt></a>
+in a terminal window on the computer connected to the SDR. It will start a web
+server and print the url.
+
